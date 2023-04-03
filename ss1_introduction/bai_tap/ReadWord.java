@@ -24,16 +24,16 @@ public class ReadWord {
                 }
             case 2:
                 if (number == 10) {
-                    System.out.println(+number + "Ten");
+                    System.out.println("Ten");
                 }
                 if (number == 11) {
-                    System.out.print(+number + "Eleven");
+                    System.out.print("Eleven");
                 }
                 if (number == 12) {
-                    System.out.print(+number + "Twelve");
+                    System.out.print("Twelve");
                 }
                 if (number == 13) {
-                    System.out.print(+number + "thirteen");
+                    System.out.print("thirteen");
                 }
                 if (number > 13 && number < 20) {
                     for (byte i = 3; i < 10; i++) {
@@ -47,6 +47,7 @@ public class ReadWord {
                     System.out.printf(arrWord1[number / 10] + "ty-" + arrWord[number % 10]);
                     break;
                 }
+                break;
             case 3:
                 if (number == 100) {
                     System.out.printf("onehundred and ");
