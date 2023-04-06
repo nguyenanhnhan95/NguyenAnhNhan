@@ -5,8 +5,11 @@ import java.util.Scanner;
 public class Prime {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.printf("Enter number check prime :");
-        int number = Integer.parseInt(sc.nextLine());
+        int number;
+        do {
+            System.out.printf("Enter number check prime greater one:");
+            number = Integer.parseInt(sc.nextLine());
+        } while (number < 2);
         System.out.println(checkPrime(number));
     }
 
