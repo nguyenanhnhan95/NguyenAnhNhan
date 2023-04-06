@@ -1,7 +1,6 @@
-package ss4_class_object.bai_tap.QuadraticEquation;
+package ss4_class_object.bai_tap.quadratic_equation;
 
 import java.lang.Math;
-import java.util.Scanner;
 
 class QuadraticEquation {
     private double numberA, numberB, numberC;

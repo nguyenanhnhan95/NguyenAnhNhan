@@ -1,4 +1,4 @@
-package ss4_class_object.bai_tap.Fan;
+package ss4_class_object.bai_tap.fan;
 
 public class Fan {
     public static final Byte SLOW = 1;
@@ -9,8 +9,8 @@ public class Fan {
     public String color = "blue";
     public double radius = 5.0;
 
-    public Fan(byte speed,boolean on, String color, double radius) {
-        this.speed=speed;
+    public Fan(byte speed, boolean on, String color, double radius) {
+        this.speed = speed;
         this.on = on;
         this.color = color;
         this.radius = radius;
@@ -48,11 +48,22 @@ public class Fan {
         return radius;
     }
 
+
+    @Override
     public String toString() {
         if (on) {
-            return "Speed=" + this.getSpeed() + "color=" + this.getColor() + "radius" + this.getRadius() + "fan is off";
+            return "Fan{" +
+                    "speed=" + speed +
+                    ", on=" + on +
+                    ", color='" + color + '\'' +
+                    ", radius=" + radius +
+                    '}';
         } else {
-            return "color=" + this.color + "radius=" + this.radius + "fan is off";
+            return "Fan{" +
+                    ", on=" + on +
+                    ", color='" + color + '\'' +
+                    ", radius=" + radius +
+                    '}';
         }
     }
 }
