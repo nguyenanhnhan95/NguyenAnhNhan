@@ -20,11 +20,14 @@ public class Point3D extends Point2D {
     }
 
     public float[] getXYZ() {
-        float[] arrayB = new float[3];
-        arrayB[0] = super.getX();
-        arrayB[1] = super.getY();
-        arrayB[2] = this.z;
+        float[] arrayB = {getX(), getY(), getZ()};
         return arrayB;
+    }
+
+    public void setXYZ(float x, float y, float z) {
+        setX(x);
+        setY(y);
+        setZ(z);
     }
 
     @Override
