@@ -9,14 +9,14 @@ public class Calculate {
     private double secondOperand;
     private char operator;
 
-    public  Calculate(double firstOperand, double secondOperand, char operator) {
-        this.firstOperand=firstOperand;
-        this.secondOperand =secondOperand;
-        this.operator=operator;
+    public Calculate(double firstOperand, double secondOperand, char operator) {
+        this.firstOperand = firstOperand;
+        this.secondOperand = secondOperand;
+        this.operator = operator;
     }
 
-    public static double Calculator(double firstOperand, double secondOperand, char operator) {
-        switch (operator) {
+    public double Calculator() {
+        switch (this.operator) {
             case ADDITION:
                 return firstOperand + secondOperand;
             case SUBTRACTION:
@@ -38,7 +38,7 @@ public class Calculate {
         return "Calculate{" +
                 "firstOperand=" + firstOperand +
                 ", secondOperand=" + secondOperand +
-                ", operator=" + operator +"result"+
+                ", operator=" + operator + "result" +
                 '}';
     }
 }

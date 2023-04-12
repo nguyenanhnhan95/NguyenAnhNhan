@@ -11,7 +11,7 @@ public class MainTest {
         Square square = new Square(5, 7, true, "red");
         Shape[] shapes = new Shape[]{circle, square};
         for (Shape shape : shapes) {
-            if (shape instanceof Square) {
+            if (shape instanceof IColorable) {
                 Square square1 = (Square) shape;
                 System.out.println(square1);
                 square1.howToColor();
