@@ -4,6 +4,9 @@ public class MainTest {
     public static void main(String[] args) {
         MyLinkedList<Integer> myLinkedList = new MyLinkedList<Integer>();
         myLinkedList.addFist(5);
-        myLinkedList.display();
+        myLinkedList.addFist(7);
+        myLinkedList.printList();
+        myLinkedList.delete(1);
+        myLinkedList.printList();
     }
 }
