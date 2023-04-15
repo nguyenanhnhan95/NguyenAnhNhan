@@ -2,12 +2,16 @@ package ss9_dsa.bai_tap.manage_employe.model;
 
 import java.time.LocalDate;
 
-public class Study extends PersonCodeGym{
+public class Study extends PersonCodeGym {
     private String classStudy;
     private double Point;
 
-    public Study(String id, String name, LocalDate date, String gender, String classStudy, double point) {
-        super(id,name,date,gender);
+    public Study() {
+
+    }
+
+    public Study(String id, String name, String date, String gender, String classStudy, double point) {
+        super(id, name, date, gender);
         this.classStudy = classStudy;
         Point = point;
     }
@@ -26,5 +30,13 @@ public class Study extends PersonCodeGym{
 
     public void setPoint(double point) {
         Point = point;
+    }
+
+    @Override
+    public String toString() {
+        return "Study{" + super.toString() +
+                "classStudy='" + classStudy + '\'' +
+                ", Point=" + Point +
+                "}\n";
     }
 }

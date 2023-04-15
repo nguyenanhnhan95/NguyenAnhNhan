@@ -2,13 +2,17 @@ package ss9_dsa.bai_tap.manage_employe.model;
 
 import java.time.LocalDate;
 
-public class PersonCodeGym {
+public abstract class PersonCodeGym {
     private String id;
     private String name;
-    private LocalDate date;
+    private String date;
     private String gender;
 
-    public PersonCodeGym(String id, String name, LocalDate date, String gender) {
+    public PersonCodeGym() {
+
+    }
+
+    public PersonCodeGym(String id, String name, String date, String gender) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -31,11 +35,11 @@ public class PersonCodeGym {
         this.name = name;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -45,5 +49,15 @@ public class PersonCodeGym {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonCodeGym{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", date=" + date +
+                ", gender='" + gender + '\'' +
+                '}';
     }
 }
