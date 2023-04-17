@@ -1,4 +1,4 @@
-package ss11_map_binary.bai_tap.manage_product.responsitory;
+package ss11_map_binary.bai_tap.manage_product.respository;
 
 import ss11_map_binary.bai_tap.manage_product.model.Product;
 

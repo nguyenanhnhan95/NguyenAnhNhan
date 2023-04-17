@@ -1,7 +1,7 @@
 package ss11_map_binary.bai_tap.manage_product.service;
 
 import ss11_map_binary.bai_tap.manage_product.model.Product;
-import ss11_map_binary.bai_tap.manage_product.responsitory.ProductRepository;
+import ss11_map_binary.bai_tap.manage_product.respository.ProductRepository;
 
 
 import java.util.*;

@@ -1,4 +1,4 @@
-package ss11_map_binary.bai_tap.manage_product.responsitory;
+package ss11_map_binary.bai_tap.manage_product.respository;
 
 import java.util.List;
 
