@@ -1,11 +1,11 @@
-package ss9_dsa.bai_tap.manage_employe.responsitory;
+package ss9_dsa.bai_tap.manage_employe.respository;
 
 import ss9_dsa.bai_tap.manage_employe.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentResponsitory implements ICodeGymResponsitory<Student> {
+public class StudentRespository implements ICodeGymRespository<Student> {
     private static List<Student> studies = new ArrayList<Student>();
 
     static {

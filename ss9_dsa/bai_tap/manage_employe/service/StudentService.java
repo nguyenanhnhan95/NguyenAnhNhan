@@ -1,14 +1,14 @@
 package ss9_dsa.bai_tap.manage_employe.service;
 
 import ss9_dsa.bai_tap.manage_employe.model.Student;
-import ss9_dsa.bai_tap.manage_employe.responsitory.StudentResponsitory;
+import ss9_dsa.bai_tap.manage_employe.respository.StudentRespository;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class StudentService implements ICoGymService {
     private Scanner sc = new Scanner(System.in);
-    private StudentResponsitory studentRepository = new StudentResponsitory();
+    private StudentRespository studentRepository = new StudentRespository();
 
     @Override
     public List<Student> getList() {
