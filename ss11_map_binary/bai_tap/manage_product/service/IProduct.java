@@ -2,12 +2,18 @@ package ss11_map_binary.bai_tap.manage_product.service;
 
 import java.util.List;
 
-public interface IProduct<E>{
-    List<E> getList();
+public interface IProduct<E> {
+    void getList();
+
     void addProduct();
-    void setInformation();
-    void deleteProduct();
-    void findProduct();
+
+    boolean setInformation();
+
+    boolean deleteProduct();
+
+    boolean findProduct();
+
     void sortIncrease();
+
     void sortDecrease();
 }

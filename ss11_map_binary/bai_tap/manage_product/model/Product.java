@@ -2,7 +2,7 @@ package ss11_map_binary.bai_tap.manage_product.model;
 
 public class Product {
     private String name;
-    private double price =0.0d;
+    private double price = 0.0d;
     private String id;
 
     public Product(String name, double price, String id) {
@@ -10,7 +10,9 @@ public class Product {
         this.price = price;
         this.id = id;
     }
-    public Product(){}
+
+    public Product() {
+    }
 
     public String getName() {
         return name;
