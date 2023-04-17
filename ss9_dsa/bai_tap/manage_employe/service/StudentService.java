@@ -1,17 +1,17 @@
 package ss9_dsa.bai_tap.manage_employe.service;
 
-import ss9_dsa.bai_tap.manage_employe.model.Study;
-import ss9_dsa.bai_tap.manage_employe.respository.StudentRepository;
+import ss9_dsa.bai_tap.manage_employe.model.Student;
+import ss9_dsa.bai_tap.manage_employe.responsitory.StudentResponsitory;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class StudentService implements ICoGymService {
-    Scanner sc = new Scanner(System.in);
-    StudentRepository studentRepository = new StudentRepository();
+    private Scanner sc = new Scanner(System.in);
+    private StudentResponsitory studentRepository = new StudentResponsitory();
 
     @Override
-    public List<Study> getList() {
+    public List<Student> getList() {
         return studentRepository.getList();
     }
 
@@ -30,7 +30,7 @@ public class StudentService implements ICoGymService {
         String classStudy = sc.nextLine();
         System.out.println("Enter point");
         Double point = Double.parseDouble(sc.nextLine());
-        Study study = new Study(id, name, date, gender, classStudy, point);
+        Student study = new Student(id, name, date, gender, classStudy, point);
         studentRepository.add(study);
     }
 
@@ -54,7 +54,7 @@ public class StudentService implements ICoGymService {
         System.out.printf("----------------------------------------------------------%n");
         System.out.printf("| ID |         Name   |BirthOfDay | Gender| Class | Point |%n");
         System.out.printf("|---------------------------------------------------------|%n");
-        for (Study study : studentRepository.getList()) {
+        for (Student study : studentRepository.getList()) {
             System.out.printf("| %-2s | %-15s| %-10s| %-6s|%-5s|%-7s|", study.getId(), study.getName(), study.getDate(), study.getGender(), study.getClassStudy(), study.getPoint());
             System.out.println("");
         }

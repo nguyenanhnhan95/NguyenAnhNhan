@@ -2,15 +2,15 @@ package ss9_dsa.bai_tap.manage_employe.model;
 
 import java.time.LocalDate;
 
-public class Study extends PersonCodeGym {
+public class Student extends PersonCodeGym {
     private String classStudy;
     private double Point;
 
-    public Study() {
+    public Student() {
 
     }
 
-    public Study(String id, String name, String date, String gender, String classStudy, double point) {
+    public Student(String id, String name, String date, String gender, String classStudy, double point) {
         super(id, name, date, gender);
         this.classStudy = classStudy;
         Point = point;

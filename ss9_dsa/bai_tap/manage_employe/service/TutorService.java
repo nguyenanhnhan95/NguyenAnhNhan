@@ -1,15 +1,14 @@
 package ss9_dsa.bai_tap.manage_employe.service;
 
-import ss9_dsa.bai_tap.manage_employe.model.Study;
 import ss9_dsa.bai_tap.manage_employe.model.Tutor;
-import ss9_dsa.bai_tap.manage_employe.respository.TutorRepository;
+import ss9_dsa.bai_tap.manage_employe.responsitory.TutorResponsitory;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class TutorService implements ICoGymService {
-    TutorRepository tutorRepository = new TutorRepository();
-    Scanner sc = new Scanner(System.in);
+    private TutorResponsitory tutorRepository = new TutorResponsitory();
+    private Scanner sc = new Scanner(System.in);
 
     @Override
     public List<Tutor> getList() {
