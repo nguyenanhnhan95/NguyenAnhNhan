@@ -30,9 +30,8 @@ public class ProductRepository implements IProductRepository<Product> {
     }
 
     @Override
-    public void setInformation(String name, Double price, int index) {
-        products.get(index).setName(name);
-        products.get(index).setPrice(price);
+    public void setInformation(Product product, int count) {
+        getList().set(count, product);
     }
 
     @Override

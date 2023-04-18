@@ -42,9 +42,11 @@ public class ProductService implements IProduct<Product> {
             if (product.getId().equals(id)) {
                 System.out.println("Nhập tên muốn thay đổi :");
                 String name = sc.nextLine();
+                product.setName(name);
                 System.out.println("Nhập giá muốn thay đổi :");
                 Double price = Double.parseDouble(sc.nextLine());
-                productResponsitory.setInformation(name, price, count);
+                product.setPrice(price);
+                productResponsitory.setInformation(product, count);
                 return true;
             }
             count++;
