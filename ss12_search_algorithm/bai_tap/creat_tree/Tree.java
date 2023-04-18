@@ -1,4 +1,6 @@
-package ss12_search_algorithm.bai_tap.binary_search_recursive;
+package ss12_search_algorithm.bai_tap.creat_tree;
+
+import java.lang.management.GarbageCollectorMXBean;
 
 public class Tree<E extends Comparable<E>> {
     private int size = 0;
@@ -29,6 +31,30 @@ public class Tree<E extends Comparable<E>> {
             this.element = e;
             this.left = null;
             this.right = null;
+        }
+
+        public E getElement() {
+            return element;
+        }
+
+        public void setElement(E element) {
+            this.element = element;
+        }
+
+        public NodeTree<E> getLeft() {
+            return left;
+        }
+
+        public void setLeft(NodeTree<E> left) {
+            this.left = left;
+        }
+
+        public NodeTree<E> getRight() {
+            return right;
+        }
+
+        public void setRight(NodeTree<E> right) {
+            this.right = right;
         }
     }
 
@@ -84,7 +110,6 @@ public class Tree<E extends Comparable<E>> {
         while (nodeFind != null) {
             if (e.compareTo(nodeFind.element) > 0) {
                 nodeFind = nodeFind.right;
-                System.out.println(nodeFind.element);
             } else if (e.compareTo(nodeFind.element) < 0) {
                 nodeFind = nodeFind.left;
             } else {
@@ -94,23 +119,25 @@ public class Tree<E extends Comparable<E>> {
         return false;
     }
 
-    public boolean deleteElement(NodeTree<E> root, E e) {
+    public boolean deleteElement(E e) {
         if (root == null) {
             return false;
         }
-        if (e.compareTo(root.element) > 0) {
-            return deleteElement(root.right, e);
-        } else if (e.compareTo(root.element) < 0) {
-            return deleteElement(root.left, e);
-        } else if (root.left == root.right) {
-            root = null;
-            return true;
-        } else if (root.right != null) {
-            root = root.right;
-            return true;
-        } else if (root.left != null) {
-            root = root.left;
-            return true;
+        while (root != null) {
+            if (e.compareTo(root.element) > 0) {
+                root = root.right;
+            } else if (e.compareTo(root.element) < 0) {
+                root = root.left;
+            } else {
+                if (root.left == root.right) {
+                    root = null;
+                } else if (root.right != null) {
+                    root = root.right;
+                } else {
+                    root = root.left;
+                }
+                return true;
+            }
         }
         return false;
     }
