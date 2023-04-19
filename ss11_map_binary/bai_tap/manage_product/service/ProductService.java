@@ -37,22 +37,20 @@ public class ProductService implements IProduct<Product> {
     public boolean setInformation() {
         System.out.println("Nhập Id để chỉnh sửa thông tin :");
         String id = sc.nextLine();
-        int count = 0;
-        for (Product product : productResponsitory.getList()) {
-            if (product.getId().equals(id)) {
-                System.out.println("Nhập tên muốn thay đổi :");
-                String name = sc.nextLine();
-                product.setName(name);
-                System.out.println("Nhập giá muốn thay đổi :");
-                Double price = Double.parseDouble(sc.nextLine());
-                product.setPrice(price);
-                productResponsitory.setInformation(product, count);
-                return true;
-            }
-            count++;
+        int index = productResponsitory.setInformation(id);
+        if (index != -1) {
+            System.out.println("Nhập tên muốn thay đổi :");
+            String name = sc.nextLine();
+            productResponsitory.getList().get(index).setName(name);
+            System.out.println("Nhập giá muốn thay đổi :");
+            Double price = Double.parseDouble(sc.nextLine());
+            productResponsitory.getList().get(index).setPrice(price);
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
+
 
     @Override
     public boolean deleteProduct() {

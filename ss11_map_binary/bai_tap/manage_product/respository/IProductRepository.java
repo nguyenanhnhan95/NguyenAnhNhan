@@ -9,7 +9,7 @@ public interface IProductRepository<E> {
 
     void addProduct(E e);
 
-    void setInformation(E e, int index);
+    int setInformation(String id);
 
     void deleteProduct(E e);
 }

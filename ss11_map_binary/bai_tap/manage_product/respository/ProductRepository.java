@@ -30,8 +30,13 @@ public class ProductRepository implements IProductRepository<Product> {
     }
 
     @Override
-    public void setInformation(Product product, int count) {
-        getList().set(count, product);
+    public int setInformation(String id) {
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getId().equals(id)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
