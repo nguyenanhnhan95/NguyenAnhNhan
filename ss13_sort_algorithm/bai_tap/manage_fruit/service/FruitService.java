@@ -51,12 +51,12 @@ public class FruitService implements IFruitService<Fruit> {
     //        public Fruit(String name, int quality, LocalDate expireFruit, java.time.LocalDate dateOfManufacture, String origin) {
     @Override
     public void display() {
-        System.out.println("+-------------------------------------------------------------------------------+");
-        System.out.println("| Tên          |Loại  | Ngày sản suất  | Ngày hết hạn   |Nơi sản xuất  |  Giá   |");
-        System.out.println("+-------------------------------------------------------------------------------+");
+        System.out.println("+----------------------------------------------------------------------------------+");
+        System.out.println("| Tên          |Loại  | Ngày sản xuất  | Ngày hết hạn   |Nơi sản xuất  |  Giá      |");
+        System.out.println("+----------------------------------------------------------------------------------+");
         for (Fruit a : fruitRepository.getList()) {
-            System.out.printf("| %-12s | %-5s| %-15s| %-15s| %-13s|%-8s|\n", a.getName(), a.getQuality(), a.getDateOfManufacture(), a.getExpireFruit(), a.getOrigin(), a.getPrice());
-            System.out.println("+-------------------------------------------------------------------------------+");
+            System.out.printf("| %-12s | %-5s| %-15s| %-15s| %-13s|%8s|\n", a.getName(), a.getQuality(), a.getDateOfManufacture(), a.getExpireFruit(), a.getOrigin(), a.getPrice());
+            System.out.println("+----------------------------------------------------------------------------------+");
         }
     }
 
