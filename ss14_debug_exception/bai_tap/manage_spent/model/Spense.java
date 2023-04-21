@@ -56,7 +56,12 @@ public class Spense {
     public void setTypeOfSpend(String typeOfSpend) {
         this.typeOfSpend = typeOfSpend;
     }
-
+    public void readCSV(){
+//        return getId()+","+getName()
+    }
+    public String writeCSV(){
+        return getId()+","+getName()+","+getSpentDate()+","+getNumberOfSpend()+","+getTypeOfSpend();
+    }
     @Override
     public String toString() {
         return "Spense{" +
