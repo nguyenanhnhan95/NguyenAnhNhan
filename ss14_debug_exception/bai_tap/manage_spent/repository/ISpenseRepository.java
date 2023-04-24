@@ -9,4 +9,5 @@ public interface ISpenseRepository <E>{
     boolean editSpense();
     boolean findSpense();
     boolean findApproximatelySpense();
+    void writeSpense(E e);
 }

@@ -1,15 +1,18 @@
 package ss14_debug_exception.bai_tap.manage_spent.service;
 
+import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
+import ss14_debug_exception.bai_tap.manage_spent.common.Common;
 import ss14_debug_exception.bai_tap.manage_spent.model.Spense;
 import ss14_debug_exception.bai_tap.manage_spent.repository.SpenseRepository;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class SpenseService implements ISpenseService<Spense> {
+public class SpenseService extends Common implements ISpenseService<Spense> {
     private SpenseRepository spenseRepository = new SpenseRepository();
     private Scanner sc = new Scanner(System.in);
 
@@ -34,54 +37,63 @@ public class SpenseService implements ISpenseService<Spense> {
 
     @Override
     public void addSpense() {
-//        System.out.println("| Mã chi tiêu |  Tên       |  Ngày        | Tiền     | Loại    |");
         int choice = 1;
-        String id, name, date, type;
-        double money=0.0d;
+        String name=null, date=null, type=null, money=null,id=null;
+        LocalDate parseDate=null;
         do {
             switch (choice) {
                 case 1:
                     System.out.println("Nhap id chi tieu");
-                    id = sc.nextLine();
-                    if (id.matches("[0-9]+")) {
+                    id = sc.nextLine().trim();
+                    if (id.matches("[a-zA-Z 0-9]+")) {
                         System.out.println("Nhap id hop le :");
                         ++choice;
-                        continue;
-                    }
-                    else{
+                    } else {
                         System.out.println("Id không hợp lệ vui long nhap lai:");
                     }
                     break;
                 case 2:
-                    System.out.println("Nhap ten :");
-                    name = sc.nextLine();
-                    if (name.matches("[a-zA-Z_]+")) {
+                    System.out.println("Nhap tên:");
+                    name = sc.nextLine().trim();
+                    if (name.matches("[a-zA-Z ]+")) {
                         ++choice;
-                        continue;
-                    }
-                    else{
+                    } else {
                         System.out.println("Tên không hợp lệ :");
                     }
                     break;
                 case 3:
-                    date= sc.nextLine();
+                    System.out.println("Nhập ngày chi tiêu :");
+                    date = sc.nextLine().trim();
                     try {
-                        LocalDate.parse(date);
+                       parseDate = LocalDate.parse(date);
                         choice++;
-                    } catch (Exception e) {
-                        System.out.println("Nhap khong phu hop");
+                    } catch (DateTimeException e) {
+                        System.out.println("Nhap ngay khong phu hop :");
                     }
                     break;
                 case 4:
-//                    money=Double.parseDouble(sc.nextLine());
-//                    System.out.println("Nhập số tiền chi tiêu:");
-//                    Scanner keyboard;
-//                    if (keyboard.hasNextDouble()){
-//                        money = keyboard.nextDouble();
-//                    }
+                    System.out.println("Nhập số tiền bạn ");
+                    money= sc.nextLine().trim();
+                    if (money.matches("[0-9]+")) {
+                        choice++;
+                    } else {
+                        System.out.println("Nhập số tiền không hợp lý :");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Nhập loại sản phẩm :");
+                    type = sc.nextLine().trim();
+                    if (type.matches("[a-zA-Z ]+")) {
+                        ++choice;
+                    } else {
+                        System.out.println("Nhập không phù hợp :");
+                    }
+                    break;
+                default:
+                    System.out.println("Bạn đã nhập thành công :");
             }
-
-        } while (choice != 5);
+        } while (choice != 6);
+        spenseRepository.writeSpense(new Spense(id,name,parseDate,Double.valueOf(money),type));
     }
 
     @Override
