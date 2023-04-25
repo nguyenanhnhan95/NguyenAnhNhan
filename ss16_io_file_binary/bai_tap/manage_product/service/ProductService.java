@@ -1,6 +1,5 @@
 package ss16_io_file_binary.bai_tap.manage_product.service;
 
-import ss16_io_file_binary.bai_tap.manage_product.common.Common;
 import ss16_io_file_binary.bai_tap.manage_product.model.Product;
 import ss16_io_file_binary.bai_tap.manage_product.repository.ProductRepository;
 
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class ProductService implements IProductService<Product> {
     private Scanner sc = new Scanner(System.in);
     private ProductRepository productRepository = new ProductRepository();
-    private List<Product> arrayProduct = productRepository.readProduct();
+    private List<Product> arrayProduct = productRepository.getProductList();
 
     @Override
     public void display() {
@@ -78,7 +77,7 @@ public class ProductService implements IProductService<Product> {
             }
         } while (count != 4);
         arrayProduct.add(new Product(id, nameProduct, Double.parseDouble(price), origin));
-        productRepository.writeProduct(arrayProduct);
+        productRepository.addProduct(arrayProduct);
     }
 
     @Override

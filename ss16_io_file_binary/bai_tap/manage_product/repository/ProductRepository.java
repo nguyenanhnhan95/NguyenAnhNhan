@@ -12,12 +12,12 @@ public class ProductRepository implements IProductRepository<Product> {
     private Common<Product> common = new Common();
 
     @Override
-    public void writeProduct(List<Product> products) {
+    public void addProduct(List<Product> products) {
         common.writeFile(PATH, products);
     }
 
     @Override
-    public List<Product> readProduct() {
+    public List<Product> getProductList() {
         return common.readFile(PATH);
     }
 

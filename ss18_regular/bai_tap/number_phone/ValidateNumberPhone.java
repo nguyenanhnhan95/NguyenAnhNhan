@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class ValidateNumberPhone {
     private Pattern pattern;
     private Matcher matcher;
-    private static final String NUMBER_PHONE = "^\\((84)-(0+)[0-9]{9}+[)]+$";
+    private static final String NUMBER_PHONE = "^\\(84\\)-\\(0[0-9]{9}\\)$";
 
     public ValidateNumberPhone() {
         pattern = Pattern.compile(NUMBER_PHONE);

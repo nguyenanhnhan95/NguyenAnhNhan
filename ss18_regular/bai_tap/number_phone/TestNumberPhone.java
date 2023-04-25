@@ -8,6 +8,6 @@ public class TestNumberPhone {
         Scanner sc =new Scanner(System.in);
         System.out.println("Nhập số điện thoại để kiểm tra :");
         String numberPhone= sc.nextLine();
-        validateNumberPhone.checkNumberPhone(numberPhone);
+        System.out.println(validateNumberPhone.checkNumberPhone(numberPhone));
     }
 }
