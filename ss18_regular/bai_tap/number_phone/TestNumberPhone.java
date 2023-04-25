@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class TestNumberPhone {
     public static void main(String[] args) {
-        ValidateNumberPhone validateNumberPhone=new ValidateNumberPhone();
-        Scanner sc =new Scanner(System.in);
+        ValidateNumberPhone validateNumberPhone = new ValidateNumberPhone();
+        Scanner sc = new Scanner(System.in);
         System.out.println("Nhập số điện thoại để kiểm tra :");
-        String numberPhone= sc.nextLine();
+        String numberPhone = sc.nextLine();
         System.out.println(validateNumberPhone.checkNumberPhone(numberPhone));
     }
 }
