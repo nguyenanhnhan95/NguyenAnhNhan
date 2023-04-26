@@ -1,23 +1,25 @@
-package ss19_case_study_module2.model.facility;
+package ss19_case_study_module2.model;
+
+import ss19_case_study_module2.utils.ERentalType;
 
 public abstract class Facility {
     private String idService;
     private String nameService;
-    private Double areUse;
-    private Double priceTax;
+    private double areUse;
+    private double priceTax;
     private int numberPerson;
-    private String rentalPackage;
+    private ERentalType typeRental;
 
     public Facility() {
     }
 
-    public Facility(String idService, String nameService, Double areUse, Double priceTax, int numberPerson, String rentalPackage) {
+    public Facility(String idService, String nameService, double areUse, double priceTax, int numberPerson, ERentalType typeRental) {
         this.idService = idService;
         this.nameService = nameService;
         this.areUse = areUse;
         this.priceTax = priceTax;
         this.numberPerson = numberPerson;
-        this.rentalPackage = rentalPackage;
+        this.typeRental = typeRental;
     }
 
     public String getIdService() {
@@ -36,19 +38,19 @@ public abstract class Facility {
         this.nameService = nameService;
     }
 
-    public Double getAreUse() {
+    public double getAreUse() {
         return areUse;
     }
 
-    public void setAreUse(Double areUse) {
+    public void setAreUse(double areUse) {
         this.areUse = areUse;
     }
 
-    public Double getPriceTax() {
+    public double getPriceTax() {
         return priceTax;
     }
 
-    public void setPriceTax(Double priceTax) {
+    public void setPriceTax(double priceTax) {
         this.priceTax = priceTax;
     }
 
@@ -60,16 +62,16 @@ public abstract class Facility {
         this.numberPerson = numberPerson;
     }
 
-    public String getRentalPackage() {
-        return rentalPackage;
+    public ERentalType getTypeRental() {
+        return typeRental;
     }
 
-    public void setRentalPackage(String rentalPackage) {
-        this.rentalPackage = rentalPackage;
+    public void setTypeRental(ERentalType typeRental) {
+        this.typeRental = typeRental;
     }
 
     public String getInForTOCsv() {
         return this.idService + "," + this.nameService + "," + this.areUse + "," +
-                this.priceTax + "," + this.numberPerson + "," + this.rentalPackage;
+                this.priceTax + "," + this.numberPerson + "," + this.typeRental;
     }
 }
