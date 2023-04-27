@@ -11,14 +11,16 @@ public class ReadWriteFileEmployee {
     private static final String PATH_EMPLOYEE = "D:\\Codegym\\Module2\\src\\ss19_case_study_module2\\data\\employee.csv";
     ;
 
-    public void writeFile(Employee employee) {
+    public void writeFile(List<Employee> employeeList) {
         FileWriter fw = null;
         BufferedWriter br = null;
         try {
             fw = new FileWriter(new File(PATH_EMPLOYEE));
             br = new BufferedWriter(fw);
-            br.write(employee.getInForCsv());
-            br.newLine();
+            for (Employee e : employeeList) {
+                br.write(e.getInForCsv());
+                br.newLine();
+            }
             br.flush();
             br.close();
         } catch (IOException e) {

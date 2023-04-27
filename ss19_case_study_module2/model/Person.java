@@ -10,7 +10,9 @@ public abstract class Person {
     private String id;
     private String numberPhone;
     private String email;
-    public Person(){}
+
+    public Person() {
+    }
 
     public Person(String code, String name, LocalDate dayOfBirth, String gender, String id, String numberPhone, String email) {
         this.code = code;
@@ -90,7 +92,8 @@ public abstract class Person {
                 ", email='" + email + '\'' +
                 '}';
     }
-    public String getInForCsv(){
-        return this.code+","+this.email+","+this.dayOfBirth+","+this.gender+","+this.id+","+this.numberPhone+","+this.email;
+
+    public String getInForCsv() {
+        return this.code + "," + this.name + "," + this.dayOfBirth + "," + this.gender + "," + this.id + "," + this.numberPhone + "," + this.email;
     }
 }

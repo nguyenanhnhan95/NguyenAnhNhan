@@ -8,9 +8,11 @@ import java.time.LocalDate;
 
 public class test {
     public static void main(String[] args) {
-//         public Employee(String code, String name, LocalDate dayOfBirth, String gender, String id, String numberPhone,
-//                   String email, ELevelEducation levelEducation, ELevelPosition levelPosition, double salary) {
-        Employee employee = new Employee("x1","x", LocalDate.parse("2023-04-04"),"nam","154","039","nhan@", ELevelEducation.Secondary, ELevelPosition.manage,254);
-        System.out.println(employee.getDayOfBirth());
+        System.out.println("+---------+---------------+-------------+----------+------------+---------------+" +
+                "---------------------+---------------+-------------+------------+");
+        System.out.println("| Code    | Name          | Birth       | Gender   | ID         | Phone         |" +
+                " Email               | Education     | Position    | Salary     |");
+        System.out.println("+---------+---------------+-------------+----------+------------+---------------+" +
+                "---------------------+---------------+-------------+------------+");
     }
 }
