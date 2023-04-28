@@ -6,7 +6,6 @@ import ss19_case_study_module2.utils.ERentalType;
 public class House extends Facility {
     private int standardHouse;
     private int numberOfFloors;
-    private static int countUsing = 0;
     private int numberUseHome;
 
     public House() {
@@ -17,7 +16,6 @@ public class House extends Facility {
         super(idService, nameService, areUse, priceTax, numberPerson, typeRental);
         this.standardHouse = standardHouse;
         this.numberOfFloors = numberOfFloors;
-        numberUseHome = ++countUsing;
     }
 
     public int getStandardHouse() {
@@ -34,14 +32,6 @@ public class House extends Facility {
 
     public void setNumberOfFloors(byte numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
-    }
-
-    public static int getCountUsing() {
-        return countUsing;
-    }
-
-    public static void setCountUsing(int countUsing) {
-        House.countUsing = countUsing;
     }
 
     public int getNumberUseHome() {

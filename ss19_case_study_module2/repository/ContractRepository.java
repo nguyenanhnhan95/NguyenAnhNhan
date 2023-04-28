@@ -20,13 +20,14 @@ public class ContractRepository implements IContactRepository{
 
     }
 
+
     @Override
-    public Contraction edit() {
-        return null;
+    public void add(Contraction contraction) {
+
     }
 
     @Override
-    public void add() {
+    public void edit(Contraction contraction) {
 
     }
 }

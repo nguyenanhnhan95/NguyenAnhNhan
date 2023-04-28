@@ -5,8 +5,7 @@ import ss19_case_study_module2.utils.ERentalType;
 
 public class Room extends Facility {
     private int voucher;
-    private static int countUsing = 0;
-    private int numberUseRoom;
+
 
     public Room() {
     }
@@ -18,7 +17,6 @@ public class Room extends Facility {
     public Room(String idService, String nameService, double areUse, double priceTax, int numberPerson, ERentalType typeRental, int voucher) {
         super(idService, nameService, areUse, priceTax, numberPerson, typeRental);
         this.voucher = voucher;
-        numberUseRoom = ++countUsing;
     }
 
     public int getVoucher() {
@@ -27,14 +25,6 @@ public class Room extends Facility {
 
     public void setVoucher(int voucher) {
         this.voucher = voucher;
-    }
-
-    public static int getCountUsing() {
-        return countUsing;
-    }
-
-    public static void setCountUsing(int countUsing) {
-        Room.countUsing = countUsing;
     }
 
     @Override

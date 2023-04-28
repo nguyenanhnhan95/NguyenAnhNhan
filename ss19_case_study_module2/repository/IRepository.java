@@ -6,6 +6,6 @@ public interface IRepository <E>{
     int find(String id);
     List<E> readFile();
     void writeFile(List<E> e);
-    E edit();
-    void add();
+    void add(E e);
+    void edit(E e);
 }

@@ -20,13 +20,14 @@ public class BookingRepository implements IBookingRepository{
 
     }
 
+
     @Override
-    public Booking edit() {
-        return null;
+    public void add(Booking booking) {
+
     }
 
     @Override
-    public void add() {
+    public void edit(Booking booking) {
 
     }
 }

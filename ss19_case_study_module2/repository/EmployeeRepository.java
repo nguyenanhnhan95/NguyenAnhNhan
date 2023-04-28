@@ -49,13 +49,21 @@ public class EmployeeRepository implements IEmployeeRepository {
     }
 
 
+
     @Override
-    public Employee edit() {
-        return null;
+    public void add(Employee employee) {
+        employeeList=null;
+        employeeList=readFile();
+        employeeList.add(employee);
+        writeFile(employeeList);
     }
 
     @Override
-    public void add() {
-
+    public void edit(Employee employee) {
+        employeeList = new ArrayList<>();
+        employeeList = readFile();
+        int index = find(employee.getId());
+        employeeList.remove(index);
+        employeeList.add(index, employee);
     }
 }

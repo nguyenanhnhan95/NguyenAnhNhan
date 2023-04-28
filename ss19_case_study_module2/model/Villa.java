@@ -7,8 +7,7 @@ public class Villa extends Facility {
     private double areaPool;
     private int standardRoom;
     private int numberOfFloors;
-    private static int countUsing = 0;
-    private int numberUseVilla;
+
 
     public Villa() {
     }
@@ -24,7 +23,6 @@ public class Villa extends Facility {
         this.areaPool = areaPool;
         this.standardRoom = standardRoom;
         this.numberOfFloors = numberOfFloors;
-        numberUseVilla = ++countUsing;
     }
 
     public double getAreaPool() {
