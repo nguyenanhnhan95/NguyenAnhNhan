@@ -26,6 +26,7 @@ public abstract class Facility {
         return idService;
     }
 
+
     public void setIdService(String idService) {
         this.idService = idService;
     }

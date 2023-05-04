@@ -14,7 +14,7 @@ public class CustomerRepository implements ICustomerRepository{
     @Override
     public int find(String id) {
         customerList=new ArrayList<>();
-        customerList = readFile();
+        customerList = getList();
         int size = customerList.size();
         for (int i = 0; i < size; i++) {
             if (customerList.get(i).getId().equals(id)) {
@@ -25,7 +25,7 @@ public class CustomerRepository implements ICustomerRepository{
     }
 
     @Override
-    public List<Customer> readFile() {
+    public List<Customer> getList() {
         List<String> customerStrList = readWriteFile.readFile(PATH_CUSTOMER);
         customerList=new ArrayList<>();
         String[] arrayA;
@@ -38,24 +38,20 @@ public class CustomerRepository implements ICustomerRepository{
     }
 
     @Override
-    public void writeFile(List<Customer> customerList) {
+    public void add(Customer customer,boolean option) {
+        readWriteFile.writeFile(customer.getInForCsv(),PATH_CUSTOMER,true);
+    }
+    @Override
+    public void edit(Customer customer) {
         String customerStr="";
+        customerList=new ArrayList<>();
+        int index= find(customer.getId());
+        customerList=getList();
+        customerList.remove(index);
+        customerList.add(index,customer);
         for (Customer c:customerList) {
             customerStr+=c.getInForCsv()+"\n";
         }
-        readWriteFile.writeFile(customerStr,PATH_CUSTOMER);
-    }
-
-
-    @Override
-    public void add(Customer customer) {
-        customerList=new ArrayList<>();
-        customerList.add(customer);
-        writeFile(customerList);
-    }
-
-    @Override
-    public void edit(Customer customer) {
-
+        readWriteFile.writeFile(customerStr,PATH_CUSTOMER,false);
     }
 }

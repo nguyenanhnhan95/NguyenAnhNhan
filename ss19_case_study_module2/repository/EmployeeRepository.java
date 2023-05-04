@@ -16,7 +16,7 @@ public class EmployeeRepository implements IEmployeeRepository {
 
     @Override
     public int find(String id) {
-        employeeList = readFile();
+        employeeList = getList();
         int size = employeeList.size();
         for (int i = 0; i < size; i++) {
             if (employeeList.get(i).getId().equals(id)) {
@@ -27,7 +27,7 @@ public class EmployeeRepository implements IEmployeeRepository {
     }
 
     @Override
-    public List<Employee> readFile() {
+    public List<Employee> getList() {
         List<String> employeeStrList = readWriteFileEmployee.readFile(PATH_EMPLOYEE);
         employeeList = new ArrayList<>();
         String[] arrayA;
@@ -40,30 +40,21 @@ public class EmployeeRepository implements IEmployeeRepository {
     }
 
     @Override
-    public void writeFile(List<Employee> employeeList) {
-        String employeeStr = "";
-        for (Employee e : employeeList) {
-            employeeStr += e.getInForCsv() + "\n";
-        }
-        readWriteFileEmployee.writeFile(employeeStr, PATH_EMPLOYEE);
-    }
-
-
-
-    @Override
-    public void add(Employee employee) {
-        employeeList=null;
-        employeeList=readFile();
-        employeeList.add(employee);
-        writeFile(employeeList);
+    public void add(Employee employee,boolean option) {
+        readWriteFileEmployee.writeFile(employee.getInForCsv(), PATH_EMPLOYEE,option);
     }
 
     @Override
     public void edit(Employee employee) {
+        String listEmployee="";
         employeeList = new ArrayList<>();
-        employeeList = readFile();
+        employeeList = getList();
         int index = find(employee.getId());
         employeeList.remove(index);
         employeeList.add(index, employee);
+        for (Employee e:employeeList) {
+            listEmployee+=e.getInForCsv()+"\n";
+        }
+        readWriteFileEmployee.writeFile(listEmployee,PATH_EMPLOYEE,false);
     }
 }

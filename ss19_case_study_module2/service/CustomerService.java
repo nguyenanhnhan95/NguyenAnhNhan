@@ -1,11 +1,8 @@
 package ss19_case_study_module2.service;
 
 import ss19_case_study_module2.model.Customer;
-import ss19_case_study_module2.model.Employee;
 import ss19_case_study_module2.repository.CustomerRepository;
 import ss19_case_study_module2.utils.ELevelCustomer;
-import ss19_case_study_module2.utils.ELevelEducation;
-import ss19_case_study_module2.utils.ELevelPosition;
 import ss19_case_study_module2.utils.RegexFurama;
 
 import java.time.LocalDate;
@@ -33,8 +30,6 @@ public class CustomerService implements ICustomerService {
         ELevelCustomer levelCustomer = null;
         int count = 0;
         do {
-//            public Customer(String code, String name, LocalDate dayOfBirth, String gender, String id, String numberPhone, String email, ELevelCustomer levelCustomer, String addressCustomer) {
-//                super(code, name, dayOfBirth, gender, id, numberPhone, email)
             switch (count) {
                 case 0:
                     System.out.println("Enter code customer :");
@@ -152,7 +147,8 @@ public class CustomerService implements ICustomerService {
                     adressCustomer = sc.nextLine().trim();
                     if (regexFurama.regexAddress(adressCustomer)) {
                         ++count;
-                        customerRepository.add(new Customer(codeCustomer, name, birthOfDay, gender, id, numberOfPhone, email, levelCustomer, adressCustomer));
+                        customerRepository.add(new Customer(codeCustomer, name, birthOfDay, gender, id, numberOfPhone,
+                                email, levelCustomer, adressCustomer), true);
                     } else {
                         System.err.println("Fault enter please re-enter :");
                     }
@@ -164,7 +160,7 @@ public class CustomerService implements ICustomerService {
     @Override
     public void display() {
         List<Customer> customerList;
-        customerList = customerRepository.readFile();
+        customerList = customerRepository.getList();
         if (customerList != null) {
             System.out.println("+---------+--------------------+-------------+----------+------------+---------------+" +
                     "--------------------------+--------------------+-------------+");
@@ -186,7 +182,6 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void edit() {
-        List<Customer> customerList = customerRepository.readFile();
         String codeCustomer = null;
         String name = null;
         String birthOfDayStr;
@@ -196,7 +191,7 @@ public class CustomerService implements ICustomerService {
         String numberOfPhone = null;
         String address = null;
         String gender = null;
-        ELevelCustomer levelCustomer;
+        ELevelCustomer levelCustomer = null;
         String idEmployee;
         int index;
         boolean flag = true;
@@ -206,6 +201,7 @@ public class CustomerService implements ICustomerService {
         idCustomer = sc.nextLine().trim();
         index = customerRepository.find(idCustomer);
         if (index != -1) {
+            Customer customer = customerRepository.getList().get(index);
             do {
                 System.out.println("1. Code \n" +
                         "2. name \n " +
@@ -225,7 +221,7 @@ public class CustomerService implements ICustomerService {
                             System.out.println("Edit code customer :");
                             codeCustomer = sc.nextLine().trim();
                             if (regexFurama.regexCodeCustomer(codeCustomer)) {
-                                customerList.get(index).setCode(codeCustomer);
+                                customer.setCode(codeCustomer);
                                 flag = true;
                             } else {
                                 System.out.println("Please re-enter code customer :");
@@ -238,7 +234,7 @@ public class CustomerService implements ICustomerService {
                             System.out.println("Edit name customer :");
                             name = sc.nextLine().trim();
                             if (regexFurama.regexName(name)) {
-                                customerList.get(index).setName(name);
+                                customer.setName(name);
                                 flag = true;
                             } else {
                                 System.out.println("Please re-enter name customer");
@@ -253,7 +249,7 @@ public class CustomerService implements ICustomerService {
                             if (regexFurama.regexYear(birthOfDayStr)) {
                                 birthOfDay = LocalDate.parse(birthOfDayStr);
                                 if ((Period.between(birthOfDay, LocalDate.now()).getYears()) > 18) {
-                                    customerList.get(index).setDayOfBirth(birthOfDay);
+                                    customer.setDayOfBirth(birthOfDay);
                                     flag = true;
                                 } else {
                                     System.out.println("Years old below 18 re-enter :");
@@ -266,18 +262,18 @@ public class CustomerService implements ICustomerService {
                         } while (flag != true);
                         break;
                     case "4":
-                        if (customerList.get(index).getGender().equals("Female")) {
-                            customerList.get(index).setGender("Male");
+                        if (customer.getGender().equals("Female")) {
+                            customer.setGender("Male");
                         } else {
-                            customerList.get(index).setGender("Female");
+                            customer.setGender("Female");
                         }
-                        break;
+                        System.out.println("Changed :");
                     case "5":
                         do {
                             System.out.println("Please enter your ID to Edit:");
                             id = sc.nextLine().trim();
                             if (regexFurama.regexID(id)) {
-                                customerList.get(index).setId(id);
+                                customer.setId(id);
                                 flag = true;
                             } else {
                                 System.out.println("Enter fault Please re-enter");
@@ -290,7 +286,7 @@ public class CustomerService implements ICustomerService {
                             System.out.println("Please enter your number of phone to edit:");
                             numberOfPhone = sc.nextLine().trim();
                             if (regexFurama.regexPhone(numberOfPhone)) {
-                                customerList.get(index).setNumberPhone(numberOfPhone);
+                                customer.setNumberPhone(numberOfPhone);
                                 flag = true;
                             } else {
                                 System.out.println("You fault please re-enter");
@@ -303,7 +299,7 @@ public class CustomerService implements ICustomerService {
                             System.out.println("Please enter your email :");
                             email = sc.nextLine().trim();
                             if (regexFurama.regexEmail(email)) {
-                                customerList.get(index).setEmail(email);
+                                customer.setEmail(email);
                                 flag = true;
                             } else {
                                 System.out.println("you enter fault Please re-enter :");
@@ -321,23 +317,23 @@ public class CustomerService implements ICustomerService {
                                     "6. Exit \n");
                             switch (sc.nextLine().trim()) {
                                 case "1":
-                                    customerList.get(index).setLevelCustomer(ELevelCustomer.Diamond);
+                                    customer.setLevelCustomer(ELevelCustomer.Diamond);
                                     flag = false;
                                     break;
                                 case "2":
-                                    customerList.get(index).setLevelCustomer(ELevelCustomer.Platinum);
+                                    customer.setLevelCustomer(ELevelCustomer.Platinum);
                                     flag = false;
                                     break;
                                 case "3":
-                                    customerList.get(index).setLevelCustomer(ELevelCustomer.Gold);
+                                    customer.setLevelCustomer(ELevelCustomer.Gold);
                                     flag = false;
                                     break;
                                 case "4":
-                                    customerList.get(index).setLevelCustomer(ELevelCustomer.Silver);
+                                    customer.setLevelCustomer(ELevelCustomer.Silver);
                                     flag = false;
                                     break;
                                 case "5":
-                                    customerList.get(index).setLevelCustomer(ELevelCustomer.Member);
+                                    customer.setLevelCustomer(ELevelCustomer.Member);
                                     flag = false;
                                     break;
                                 case "6":
@@ -353,7 +349,7 @@ public class CustomerService implements ICustomerService {
                             System.out.println("Enter your address :");
                             address = sc.nextLine().trim();
                             if (regexFurama.regexSalary(address)) {
-                                customerList.get(index).setAddressCustomer(address);
+                                customer.setAddressCustomer(address);
                                 flag = true;
                             } else {
                                 System.out.println("Fault enter please re-enter :");
@@ -366,7 +362,7 @@ public class CustomerService implements ICustomerService {
                         break;
                 }
             } while (flag == true);
-            customerRepository.writeFile(customerList);
+            customerRepository.edit(customer);
         } else {
             System.out.println("Don't find employee :");
         }

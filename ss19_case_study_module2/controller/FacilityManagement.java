@@ -17,10 +17,13 @@ public class FacilityManagement {
             choiceFacility = sc.nextLine().trim();
             switch (choiceFacility) {
                 case "1":
+                    facilityService.display();
                     break;
                 case "2":
+                    facilityService.add();
                     break;
                 case "3":
+                    facilityService.displayMaintain();
                     break;
                 case "4":
                     break;
@@ -28,29 +31,5 @@ public class FacilityManagement {
                     System.out.println("you entered the wrong syntax");
             }
         } while (!choiceFacility.equals("4"));
-    }
-    public void addFacility(){
-        boolean flag=true;
-        do {
-            System.out.println("1. Add New Villa.\n" +
-                    "2. Add New House\n" +
-                    "3. Add New Room\n" +
-                    "4. Back to menu\n" +
-                    "Enter your choice\n");
-            switch (sc.nextLine().trim()) {
-                case "1":
-                    facilityService.addRoom();
-                case "2":
-//                    facilityService.;
-                    break;
-                case "3":
-                    break;
-                case "4":
-                    flag=false;
-                    break;
-                default:
-                    System.out.println("you entered the wrong syntax");
-            }
-        } while (flag);
     }
 }

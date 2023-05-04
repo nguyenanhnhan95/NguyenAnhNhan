@@ -46,5 +46,13 @@ public class RegexFurama {
     public boolean regexCodeService(String codeService) {
         return codeService.matches("^[A-Z][a-z ]+$");
     }
-
+    public boolean regexNumberInt(String number){
+        return number.matches("^[1-9][0-9]*$");
+    }
+    public boolean regexNumberDouble(String number){
+        return number.matches("^[1-9][0-9]*.[0-9]*$");
+    }
+    public boolean regexCodeBooking(String codeBooking){
+        return codeBooking.matches("^BO-[0-9]{4}$");
+    }
 }

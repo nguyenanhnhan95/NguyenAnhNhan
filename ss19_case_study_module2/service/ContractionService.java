@@ -1,8 +1,6 @@
 package ss19_case_study_module2.service;
 
-import ss19_case_study_module2.model.Contraction;
-
-public class ContractionService implements IContactService{
+public class ContractionService implements IContractService {
     @Override
     public void add() {
 

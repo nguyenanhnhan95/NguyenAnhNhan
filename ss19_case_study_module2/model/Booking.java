@@ -2,9 +2,9 @@ package ss19_case_study_module2.model;
 
 import java.time.LocalDate;
 
-public class Booking {
+public class Booking implements Comparable<Booking> {
     private String codeBook;
-    private LocalDate startRental;
+    private LocalDate dayBooking;
     private LocalDate startDate;
     private LocalDate endDate;
     private String codeCustomer;
@@ -13,10 +13,10 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(String codeBook, LocalDate startRental, LocalDate startDate,
+    public Booking(String codeBook, LocalDate dayBooking, LocalDate startDate,
                    LocalDate endDate, String codeCustomer, String idService) {
         this.codeBook = codeBook;
-        this.startRental = startRental;
+        this.dayBooking = dayBooking;
         this.startDate = startDate;
         this.endDate = endDate;
         this.codeCustomer = codeCustomer;
@@ -32,11 +32,11 @@ public class Booking {
     }
 
     public LocalDate getStartRental() {
-        return startRental;
+        return dayBooking;
     }
 
-    public void setStartRental(LocalDate startRental) {
-        this.startRental = startRental;
+    public void setStartRental(LocalDate dayBooking) {
+        this.dayBooking = dayBooking;
     }
 
     public LocalDate getStartDate() {
@@ -75,7 +75,7 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "codeBook='" + codeBook + '\'' +
-                ", startRental=" + startRental +
+                ", startRental=" + dayBooking +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", codeCustomer='" + codeCustomer + '\'' +
@@ -84,6 +84,14 @@ public class Booking {
     }
 
     public String getInForCsv() {
-        return this.codeBook + "," + this.startRental + "," + this.startDate + "," + this.endDate + "," + this.codeCustomer + "," + this.idService;
+        return this.codeBook + "," + this.dayBooking + "," + this.startDate + "," + this.endDate + "," + this.codeCustomer + "," + this.idService;
+    }
+    @Override
+    public int compareTo(Booking o) {
+        int result =this.getStartRental().compareTo(((Booking)o).getStartRental());
+        if(result ==0) {
+            result=this.getEndDate().compareTo(o.getEndDate());
+        }
+        return  result;
     }
 }

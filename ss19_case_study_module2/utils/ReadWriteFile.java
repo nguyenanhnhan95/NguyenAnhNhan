@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadWriteFile {
-    public void writeFile(String objString, String path) {
+    public void writeFile(String objString, String path,boolean option) {
         FileWriter fw = null;
         BufferedWriter br = null;
         try {
-            fw = new FileWriter(new File(path));
+            fw = new FileWriter(new File(path),option);
             br = new BufferedWriter(fw);
             br.write(objString);
             br.newLine();

@@ -1,9 +1,11 @@
 package ss19_case_study_module2.controller;
+import ss19_case_study_module2.service.BookingService;
 import ss19_case_study_module2.view.MainFurama;
 import java.util.Scanner;
 
 public class BookManagement {
     private Scanner sc = new Scanner(System.in);
+    private BookingService bookingService = new BookingService();
     public void manageBooking() {
         String choiceBooking;
         do {
@@ -17,8 +19,10 @@ public class BookManagement {
             choiceBooking = sc.nextLine().trim();
             switch (choiceBooking) {
                 case "1":
+                    bookingService.add();
                     break;
                 case "2":
+                    bookingService.display();
                     break;
                 case "3":
                     break;

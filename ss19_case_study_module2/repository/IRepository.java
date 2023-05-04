@@ -4,8 +4,6 @@ import java.util.List;
 
 public interface IRepository <E>{
     int find(String id);
-    List<E> readFile();
-    void writeFile(List<E> e);
-    void add(E e);
+    void add(E e,boolean option);
     void edit(E e);
 }

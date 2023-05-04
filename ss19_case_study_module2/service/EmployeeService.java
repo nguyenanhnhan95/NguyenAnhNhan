@@ -1,6 +1,5 @@
 package ss19_case_study_module2.service;
 
-import ss19_case_study_module2.model.Customer;
 import ss19_case_study_module2.model.Employee;
 import ss19_case_study_module2.repository.EmployeeRepository;
 import ss19_case_study_module2.utils.ELevelEducation;
@@ -183,7 +182,7 @@ public class EmployeeService implements IEmployeeService {
                     if (regexFurama.regexSalary(salary)) {
                         ++count;
                         employeeRepository.add(new Employee(codeEmployee, name, birthOfDay, gender, id, numberOfPhone,
-                                email, levelEducation, levelPosition, Double.parseDouble(salary)));
+                                email, levelEducation, levelPosition, Double.parseDouble(salary)), true);
 
                     } else {
                         System.err.println("Fault enter please re-enter :");
@@ -193,14 +192,12 @@ public class EmployeeService implements IEmployeeService {
         } while (count != 10);
     }
 
-    //        String code, String name, LocalDate dayOfBirth, String gender, String id, String numberPhone,
-//                String email, ELevelEducation levelEducation, ELevelPosition levelPosition, double salary) {
     @Override
     public void display() {
         listEmployee = new ArrayList<>();
-        listEmployee = employeeRepository.readFile();
+        listEmployee = employeeRepository.getList();
         System.out.println("+---------+--------------------+-------------+----------+------------+---------------+" +
-                "--------------------------+--------------------+-------------+------------+");
+                "--------------------+--------------------+-------------+------------+");
         System.out.println("| Code    | Name               | Birth       | Gender   | ID         | Phone         |" +
                 " Email                    | Education          | Position    | Salary     |");
         for (Employee e : listEmployee) {
@@ -224,7 +221,6 @@ public class EmployeeService implements IEmployeeService {
         String email = null;
         String numberOfPhone = null;
         String salary = null;
-        String gender = null;
         ELevelEducation levelEducation = null;
         ELevelPosition levelPosition = null;
         String idEmployee;
@@ -235,6 +231,7 @@ public class EmployeeService implements IEmployeeService {
         idEmployee = sc.nextLine().trim();
         index = employeeRepository.find(idEmployee);
         if (index != -1) {
+            Employee employee = employeeRepository.getList().get(index);
             do {
                 System.out.println("1. Code \n" +
                         "2. name \n " +
@@ -255,6 +252,7 @@ public class EmployeeService implements IEmployeeService {
                             System.out.println("Edit code employee :");
                             codeEmployee = sc.nextLine().trim();
                             if (regexFurama.regexCodeEmployee(codeEmployee)) {
+                                employee.setCode(codeEmployee);
                                 flag = true;
                             } else {
                                 System.out.println("Please re-enter code employee :");
@@ -267,6 +265,7 @@ public class EmployeeService implements IEmployeeService {
                             System.out.println("Edit name employee :");
                             name = sc.nextLine().trim();
                             if (regexFurama.regexName(name)) {
+                                employee.setName(name);
                                 flag = true;
                             } else {
                                 System.out.println("Please re-enter name employee");
@@ -280,7 +279,8 @@ public class EmployeeService implements IEmployeeService {
                             birthOfDayStr = sc.nextLine().trim();
                             if (regexFurama.regexYear(birthOfDayStr)) {
                                 birthOfDay = LocalDate.parse(birthOfDayStr);
-                                if ((Period.between(birthOfDay, LocalDate.now()).getYears()) > 18) {
+                                if ((Period.between(birthOfDay, LocalDate.now()).getYears()) >= 18) {
+                                    employee.setDayOfBirth(birthOfDay);
                                     flag = true;
                                 } else {
                                     System.out.println("Years old below 18 re-enter :");
@@ -293,29 +293,19 @@ public class EmployeeService implements IEmployeeService {
                         } while (flag != true);
                         break;
                     case "4":
-                        do {
-                            System.out.println("1. Female\n" +
-                                    "2. Male\n");
-                            switch (sc.nextLine().trim()) {
-                                case "1":
-                                    gender = "Female";
-                                    flag = true;
-                                    break;
-                                case "2":
-                                    gender = "Male";
-                                    flag = true;
-                                    break;
-                                default:
-                                    System.out.println("You enter fault");
-                                    flag = false;
-                            }
-                        } while (flag != true);
+                        if (employee.getGender().equals("Female")) {
+                            employee.setGender("Male");
+                        } else {
+                            employee.setGender("Female");
+                        }
+                        System.out.println("Changed");
                         break;
                     case "5":
                         do {
                             System.out.println("Please enter your ID to Edit:");
                             id = sc.nextLine().trim();
                             if (regexFurama.regexID(id)) {
+                                employee.setId(id);
                                 flag = true;
                             } else {
                                 System.out.println("Enter fault Please re-enter");
@@ -328,6 +318,7 @@ public class EmployeeService implements IEmployeeService {
                             System.out.println("Please enter your number of phone to edit:");
                             numberOfPhone = sc.nextLine().trim();
                             if (regexFurama.regexPhone(numberOfPhone)) {
+                                employee.setNumberPhone(numberOfPhone);
                                 flag = true;
                             } else {
                                 System.out.println("You fault please re-enter");
@@ -340,6 +331,7 @@ public class EmployeeService implements IEmployeeService {
                             System.out.println("Please enter your email :");
                             email = sc.nextLine().trim();
                             if (regexFurama.regexEmail(email)) {
+                                employee.setEmail(email);
                                 flag = true;
                             } else {
                                 System.out.println("you enter fault Please re-enter :");
@@ -356,19 +348,19 @@ public class EmployeeService implements IEmployeeService {
                                     "5. Exit");
                             switch (sc.nextLine().trim()) {
                                 case "1":
-                                    levelEducation = ELevelEducation.Secondary;
+                                    employee.setLevelEducation(ELevelEducation.Secondary);
                                     flag = false;
                                     break;
                                 case "2":
-                                    levelEducation = ELevelEducation.college;
+                                    employee.setLevelEducation(ELevelEducation.college);
                                     flag = false;
                                     break;
                                 case "3":
-                                    levelEducation = ELevelEducation.university;
+                                    employee.setLevelEducation(ELevelEducation.university);
                                     flag = false;
                                     break;
                                 case "4":
-                                    levelEducation = ELevelEducation.graduatedUniversity;
+                                    employee.setLevelEducation(ELevelEducation.graduatedUniversity);
                                     flag = false;
                                     break;
                                 case "5":
@@ -390,27 +382,27 @@ public class EmployeeService implements IEmployeeService {
                                     "7. exit");
                             switch (sc.nextLine().trim()) {
                                 case "1":
-                                    levelPosition = ELevelPosition.receptionist;
+                                    employee.setLevelPosition(ELevelPosition.receptionist);
                                     flag = false;
                                     break;
                                 case "2":
-                                    levelPosition = ELevelPosition.serve;
+                                    employee.setLevelPosition(ELevelPosition.serve);
                                     flag = false;
                                     break;
                                 case "3":
-                                    levelPosition = ELevelPosition.expert;
+                                    employee.setLevelPosition(ELevelPosition.expert);
                                     flag = false;
                                     break;
                                 case "4":
-                                    levelPosition = ELevelPosition.monitor;
+                                    employee.setLevelPosition(ELevelPosition.monitor);
                                     flag = false;
                                     break;
                                 case "5":
-                                    levelPosition = ELevelPosition.manage;
+                                    employee.setLevelPosition(ELevelPosition.manage);
                                     flag = false;
                                     break;
                                 case "6":
-                                    levelPosition = ELevelPosition.director;
+                                    employee.setLevelPosition(ELevelPosition.director);
                                     flag = false;
                                     break;
                                 case "7":
@@ -426,6 +418,7 @@ public class EmployeeService implements IEmployeeService {
                             System.out.println("Enter your salary :");
                             salary = sc.nextLine().trim();
                             if (regexFurama.regexSalary(salary)) {
+                                employee.setSalary(Double.parseDouble(salary));
                                 flag = true;
                             } else {
                                 System.out.println("Fault enter please re-enter :");
@@ -438,8 +431,7 @@ public class EmployeeService implements IEmployeeService {
                         break;
                 }
             } while (flag == true);
-            employeeRepository.edit(new Employee(codeEmployee, name, birthOfDay, gender, id, numberOfPhone
-                    , email, levelEducation, levelPosition, Double.parseDouble(salary)));
+            employeeRepository.edit(employee);
         } else {
             System.out.println("Don't find employee :");
         }
