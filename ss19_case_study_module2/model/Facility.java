@@ -2,6 +2,8 @@ package ss19_case_study_module2.model;
 
 import ss19_case_study_module2.utils.ERentalType;
 
+import java.util.Objects;
+
 public abstract class Facility {
     private String idService;
     private String nameService;
@@ -74,5 +76,18 @@ public abstract class Facility {
     public String getInForTOCsv() {
         return this.idService + "," + this.nameService + "," + this.areUse + "," +
                 this.priceTax + "," + this.numberPerson + "," + this.typeRental;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Facility facility = (Facility) o;
+        return Objects.equals(idService, facility.idService);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idService);
     }
 }

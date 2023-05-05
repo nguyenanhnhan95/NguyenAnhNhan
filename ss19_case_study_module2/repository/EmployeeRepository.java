@@ -50,7 +50,6 @@ public class EmployeeRepository implements IEmployeeRepository {
         employeeList = new ArrayList<>();
         employeeList = getList();
         int index = find(employee.getId());
-        employeeList.remove(index);
         employeeList.add(index, employee);
         for (Employee e:employeeList) {
             listEmployee+=e.getInForCsv()+"\n";

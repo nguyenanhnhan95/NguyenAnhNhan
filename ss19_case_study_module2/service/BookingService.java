@@ -12,9 +12,7 @@ public class BookingService implements IBookingService {
     private CustomerService customerService = new CustomerService();
     private CustomerRepository customerRepository = new CustomerRepository();
     private FacilityService facilityService = new FacilityService();
-    private RoomRepository roomRepository = new RoomRepository();
-    private HouseRepository houseRepository = new HouseRepository();
-    private VillaRepository villaRepository = new VillaRepository();
+    private FacilityRepository facilityRepository = new FacilityRepository();
     private BookingRepository bookingRepository = new BookingRepository();
     private RegexFurama regexFurama = new RegexFurama();
     private Scanner sc = new Scanner(System.in);
@@ -26,12 +24,6 @@ public class BookingService implements IBookingService {
         String codeService = null;
         List<Customer> customerList = new ArrayList<>();
         customerList = customerRepository.getList();
-        Map<Villa, Integer> mapVilla = new LinkedHashMap<>();
-        mapVilla = villaRepository.getList();
-        Map<Room, Integer> mapRoom = new LinkedHashMap<>();
-        mapRoom = roomRepository.getList();
-        Map<House, Integer> mapHouse = new LinkedHashMap<>();
-        mapHouse = houseRepository.getList();
         String dayCheckIN = null;
         String dayCheckOut = null;
         String dayBooking = null;
@@ -57,54 +49,17 @@ public class BookingService implements IBookingService {
                 case 1:
                     System.out.println("Enter choice the service code :");
                     codeService = sc.nextLine().trim();
-                    Set<Room> roomSet = mapRoom.keySet();
-                    for (Room r : roomSet) {
-                        if (r.getIdService().equals(codeService)) {
-                            if (mapRoom.get(r) == 5) {
-                                System.err.println("Service is maintaining :");
-                                count = -1;
-                            } else {
-                                ++count;
-                            }
-                            break;
-                        }
+                    if(facilityRepository.find(codeService)==-1){
+                        ++count;
                     }
-                    Set<House> houseSet = mapHouse.keySet();
-                    for (House h : houseSet) {
-                        if (h.getIdService().equals(codeService)) {
-                            if (mapHouse.get(h) == 5) {
-                                System.err.println("Service is maintaining :");
-                                count = -1;
-                            } else {
-                                ++count;
-                            }
-                            break;
-                        }
-                    }
-                    Set<Villa> villaSet = mapVilla.keySet();
-                    for (Villa v : villaSet) {
-                        if (v.getIdService().equals(codeService)) {
-                            if (mapVilla.get(v) == 5) {
-                                System.err.println("Service is maintaining :");
-                                count = -1;
-                            } else {
-                                ++count;
-                            }
-                            break;
-                        }
-                    }
-                    if (count == 1) {
-                        System.err.println("You enter the service code don't existing :");
-                    }
-                    if (count == -1) {
-                        count = 1;
+                    else {
+                        System.err.println("You enter fault :");
                     }
                     break;
                 case 2:
                     System.out.println("Enter day booking :");
                     dayBooking = sc.nextLine().trim();
                     if (regexFurama.regexYear(dayBooking)) {
-                        System.out.println(Period.between(LocalDate.now(), LocalDate.parse(dayBooking)).getDays());
                         if (Period.between(LocalDate.now(), LocalDate.parse(dayBooking)).getDays() < 0) {
                             ++count;
                         } else {
@@ -161,9 +116,7 @@ public class BookingService implements IBookingService {
                 case 6:
                     bookingRepository.add(new Booking(codeBooking, LocalDate.parse(dayBooking), LocalDate.parse(dayCheckIN), LocalDate.parse(dayCheckOut),
                             codeCustomer, codeService), true);
-                    if(regexFurama.regexCodeRoom(codeService)){
-                        roomRepository.countUseRoom(codeService);
-                    }
+                    facilityRepository.edit(facilityRepository.finFacility(codeService));
                     ++count;
             }
         } while (count != 7);

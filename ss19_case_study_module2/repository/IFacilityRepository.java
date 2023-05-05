@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface IFacilityRepository extends IRepository<Facility>{
-    Map<House,Integer> getMapHouse();
-    Map<Room,Integer> getMapRoom();
-    Map<Villa,Integer> getMapVilla();
+    Map<Facility,Integer> getMapFacility();
+    Facility finFacility(String id);
+    Map<Facility,Integer> getFacilityMaintain();
 }

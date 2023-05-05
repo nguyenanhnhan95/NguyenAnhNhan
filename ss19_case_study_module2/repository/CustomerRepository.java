@@ -47,7 +47,6 @@ public class CustomerRepository implements ICustomerRepository{
         customerList=new ArrayList<>();
         int index= find(customer.getId());
         customerList=getList();
-        customerList.remove(index);
         customerList.add(index,customer);
         for (Customer c:customerList) {
             customerStr+=c.getInForCsv()+"\n";

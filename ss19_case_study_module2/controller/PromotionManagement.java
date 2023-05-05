@@ -1,9 +1,12 @@
 package ss19_case_study_module2.controller;
+
 import ss19_case_study_module2.view.MainFurama;
+
 import java.util.Scanner;
 
 public class PromotionManagement {
     private Scanner sc = new Scanner(System.in);
+
     public void managePromotion() {
         String choicePromotion;
         do {
